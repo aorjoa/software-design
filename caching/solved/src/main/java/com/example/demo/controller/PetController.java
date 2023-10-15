@@ -11,15 +11,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Objects;
 
 @RestController
 @RequestMapping(path = "/pets")
 public class PetController {
     private int counter = 1;
-    @GetMapping("latest")
-    @Cacheable(value = "latestPet")
-    public ResponseEntity<String> latestPet() {
+    @GetMapping("count")
+    @Cacheable(cacheNames = "count")
+    public ResponseEntity<String> clout() {
 
 // Step-1 /////////////////////
 //        System.out.println("API was called");
@@ -41,8 +40,9 @@ public class PetController {
     @Autowired
     private CacheManager cacheManager;
     @PostMapping
+    @CacheEvict(cacheNames = "count")
     public ResponseEntity<String> addPet() {
-        Objects.requireNonNull(cacheManager.getCache("latestPet")).clear();
+//        Objects.requireNonNull(cacheManager.getCache("latestPet")).clear();
         counter++;
         return new ResponseEntity<>("done",HttpStatus.OK);
     }
