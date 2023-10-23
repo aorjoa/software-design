@@ -40,8 +40,8 @@ openApiGenerate {
 	generatorName.set("spring")
 	inputSpec.set("$rootDir/specs/petstore.yaml")
 	outputDir.set(project.layout.buildDirectory.file("generated/$name").map { it.asFile.absolutePath })
-	modelPackage.set("org.openapi.example.model")
-	apiPackage.set("com.example.demo.api")
+	modelPackage.set("com.aorjoa.codegen.model")
+	apiPackage.set("com.aorjoa.codegen.api")
 	invokerPackage.set("com.example.demo.invoker")
 	cleanupOutput.set(true)
 
